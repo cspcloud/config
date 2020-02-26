@@ -6,7 +6,7 @@ logging:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://local.mysql.com:3306/cloud_file?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
+    url: jdbc:mysql://172.16.16.23:3306/cloud_file?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false
     username: root
     password: root
     hikari:
@@ -14,10 +14,10 @@ spring:
       maximum-pool-size: 20
       connection-test-query: SELECT 1
   rabbitmq:
-    host: local.rabbitmq.com
-    port: 5672
-    username: cloud-dev
-    password: cloud-dev
+    host: 172.16.16.23
+    port: 15672
+    username: guest
+    password: cpy@2020
     virtual-host: /
   servlet:
     multipart:
@@ -29,7 +29,7 @@ spring:
   aop:
     proxy-target-class: true
   zipkin:
-    base-url: http://localhost:9411
+    base-url: http://172.16.16.23:9411
     enabled: true
     sender:
       type: web
@@ -41,16 +41,35 @@ mybatis:
 security:
   oauth2:
     resource:
-      user-info-uri: http://local.gateway.com:8080/api-o/user-me
+      user-info-uri: http://172.16.16.23:8080/api-o/user-me
       prefer-token-info: false
 file:
   local:
     path: d:/localFile
     prefix: /statics
-    urlPrefix: http://api.gateway.com:8080/api-f${file.local.prefix}
+    urlPrefix: http://172.16.16.23:8080/api-f${file.local.prefix}
   aliyun:
-    endpoint: xxx
-    accessKeyId: xxx
-    accessKeySecret: xxx
+    endpoint: oss-cn-hangzhou.aliyuncs.com
+    accessKeyId: LTAIBwsB7NkxXlcg
+    accessKeySecret: osCUjnZ2k1CJjUUJtNOxeC6RDpfJhB
+    bucketName: cpy2019
+    domain: https://img.cpucloud.com
+    prefix: upload
+  qcloud:
+    domain: xxx
+    prefix: xxx
+    secretId: xxx
+    secretKey: xxx
+    region: xxx
     bucketName: xxx
-    domain: https://xxx
+  qiniu:
+    domain: xxx
+    prefix: xxx
+    accessKey: xxx
+    secretKey: xxx
+    region: xxx
+    bucketName: xxx
+
+
+
+
